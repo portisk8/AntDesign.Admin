@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/AntDesign.Admin/static/css/main.3b7a394e.css",
+    "main.js": "/AntDesign.Admin/static/js/main.a8a36b03.js",
+    "static/media/petitionIcon.png": "/AntDesign.Admin/static/media/petitionIcon.3319ffd8042b6fafd986.png",
+    "index.html": "/AntDesign.Admin/index.html",
+    "main.3b7a394e.css.map": "/AntDesign.Admin/static/css/main.3b7a394e.css.map",
+    "main.a8a36b03.js.map": "/AntDesign.Admin/static/js/main.a8a36b03.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b7a394e.css",
+    "static/js/main.a8a36b03.js"
+  ]
+}
