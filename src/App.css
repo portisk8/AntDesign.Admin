@@ -1,0 +1,29 @@
+@import "~antd/dist/antd.css";
+
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.ant-layout-sider {
+}

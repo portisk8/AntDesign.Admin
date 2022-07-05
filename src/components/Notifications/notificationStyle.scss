@@ -1,0 +1,45 @@
+.actionNotice {
+  cursor: pointer;
+  // display: inline-block;
+  transition: all 0.3s;
+  // height: 100%;
+  > .ant-list-item {
+    padding: 5px 12px;
+    &:hover {
+      background: #e6f7ff;
+    }
+  }
+  &:hover {
+    background: #e6f7ff;
+  }
+  .ant-list-item {
+    align-items: center;
+  }
+}
+
+#NotificationPopover {
+  .ant-popover-inner-content {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.notification-title {
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+.notification-extra {
+  float: right;
+  // color: @text-color-secondary;
+  font-weight: normal;
+  margin-right: 0;
+  margin-top: -1.5px;
+}
+.notification-description {
+  font-size: 12px;
+}
+.notification-datetime {
+  font-size: 12px;
+  margin-top: 4px;
+  // line-height: @line-height-base;
+}
