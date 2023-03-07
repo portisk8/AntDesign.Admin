@@ -8,7 +8,7 @@ import Avatar from "antd/lib/avatar/avatar";
 import "./notificationStyle.scss";
 import dayjs from "dayjs";
 import NotificationIcon from "../../assets/images/petitionIcon.png";
-import moment from "moment";
+
 const listData = [
   {
     email: "Email",
@@ -79,7 +79,7 @@ function Notification(props) {
                         </div>
                       )}
                       <div className={"notification-datetime"}>
-                        {moment(item.fecha).fromNow()}
+                        {dayjs(item.fecha).fromNow()}
                       </div>
                     </div>
                   }

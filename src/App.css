@@ -1,5 +1,9 @@
-@import "~antd/dist/antd.css";
-
+body {
+  margin: 0px;
+}
+.ant-drawer .ant-drawer-body {
+  padding: 0px;
+}
 .trigger {
   padding: 0 24px;
   font-size: 18px;
@@ -10,6 +14,7 @@
 
 .trigger:hover {
   color: #1890ff;
+  background: #e6f7ff;
 }
 
 .logo {
@@ -21,9 +26,79 @@
   text-align: center;
 }
 
-.site-layout .site-layout-background {
+.site-layout .site-layout-background.dark:not(.top),
+.site-layout .site-layout-background.dark:not(.top) > .name,
+.site-layout .site-layout-background.light:not(.side),
+.site-layout .site-layout-background.light:not(.side) > .name {
   background: #fff;
+  color: #001529;
+}
+.site-layout .site-layout-background.dark.top,
+.site-layout .site-layout-background.light,
+.site-layout .site-layout-background.light > .name {
+  background: #001529;
+  color: #fff;
+}
+.site-layout .site-layout-background.light > .name :hover {
+  color: #001529;
 }
 
-.ant-layout-sider {
+.tree-node {
+  /* width: fit-content; */
+  border-radius: 25px;
+  padding-right: 15px;
+  color: black;
+}
+.tree-node-focus {
+  background-color: #1890ff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.contrato-rubro-insumo-cell {
+  padding: 10px;
+  border: 1px solid #f0f0f0;
+}
+.contrato-rubro-insumo-header {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  text-align: left;
+  background: #fafafa;
+}
+
+.contrato-rubro-insumo-row-body:hover {
+  background-color: #e6f7ff;
+}
+
+.ant-input-number-input {
+  text-align: right !important;
+  padding-right: 7px !important;
+}
+
+.form-item-margin-bottom-zero {
+  margin-bottom: 0 !important;
+}
+.text-error {
+  color: red;
+}
+.text-center {
+  text-align: center;
+}
+thead > tr > th.ant-table-cell {
+  text-align: center;
+}
+/** Custom Button "Funcionalidad Futura " **/
+.ant-btn-future {
+  border-color: purple;
+  color: purple;
+}
+
+td.ant-table-cell-totales-palabra {
+  text-align: left !important;
+  padding-right: 7px !important;
+}
+
+td.ant-table-cell-totales-valores {
+  text-align: right !important;
+  padding-right: 7px !important;
 }

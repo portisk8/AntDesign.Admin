@@ -7,18 +7,27 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { authRoutes, noAuthRoutes } from "./common/routes";
 import { ConfigProvider } from "antd";
-import esES from "antd/lib/locale-provider/es_ES";
+import esES from "antd/es/locale/es_ES";
 import CONFIG from "./common/environment";
-import "moment/locale/es-mx";
+import dayjs from "dayjs";
+import "dayjs/locale/es";
+
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 function App() {
   useEffect(() => {
-    document.title = CONFIG.TITLE;
+    dayjs.locale("es");
+    document.title = CONFIG.PROJECT_NAME;
   });
   return (
     <>
       <Provider store={store}>
-        <ConfigProvider locale={esES}>
+        <ConfigProvider //https://ant.design/docs/react/customize-theme
+          locale={esES}
+          theme={{ token: { colorPrimary: "#0062F0", borderRadius: 10 } }}
+        >
           <Routes>
             <Route element={<Main />}>
               {authRoutes.map((a, index) => (

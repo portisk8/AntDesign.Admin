@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Drawer, Layout, Menu } from "antd";
+import { Drawer, Image, Layout, Menu } from "antd";
 // import { items } from "./MenuItems";
 import { useSelector } from "react-redux";
 import { getMenuData } from "../../common/menu";
@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { setBreadcrumb, sideMenuCollapse } from "../../store/slices/layout";
 import { useWindowSize } from "../../utils/Hooks/useWindowSize";
 import CONFIG from "../../common/environment";
+
+const { MENU } = CONFIG;
 const { Sider } = Layout;
 
 function Sidenav() {
@@ -42,25 +44,13 @@ function Sidenav() {
   return windowSize.width < 768 ? (
     <Drawer
       placement="left"
-      width={500}
+      style={{ minWidth: "fit-content" }}
       onClose={() => dispatch(sideMenuCollapse())}
-      visible={sideMenuCollapsed}
+      open={sideMenuCollapsed}
+      closable={false}
     >
-      <Sider trigger={null} theme="dark">
-        <div
-          style={{
-            color: "white",
-            height: 64,
-            fontSize: "x-large",
-            fontWeight: 700,
-            padding: 10,
-            display: "flex",
-          }}
-        >
-          <span>{CONFIG.TITLE}</span>
-        </div>
+      <Sider trigger={null}>
         <Menu
-          theme="dark"
           mode="inline"
           defaultSelectedKeys={defaultSelectedKey}
           key={defaultSelectedKey}
@@ -74,11 +64,11 @@ function Sidenav() {
       trigger={null}
       collapsible
       collapsed={sideMenuCollapsed}
-      theme="dark"
+      theme={MENU.THEME ?? "dark"}
     >
       <div
         style={{
-          color: "white",
+          color: MENU.THEME == "dark" ? "white" : "black",
           height: 64,
           fontSize: "x-large",
           fontWeight: 700,
@@ -87,13 +77,27 @@ function Sidenav() {
         }}
       >
         {sideMenuCollapsed ? (
-          <span>{CONFIG.TITLE_SHORT}</span>
+          <span>
+            {CONFIG.TITLE_SHORT}
+            {/* <Image
+              preview={false}
+              width={50}
+              src={require("../../assets/images/main.png")}
+            /> */}
+          </span>
         ) : (
-          <span>{CONFIG.TITLE}</span>
+          <span style={{ display: "flex", alignItems: "center" }}>
+            {CONFIG.TITLE}
+            {/* <Image
+              width={100}
+              preview={false}
+              src={require("../../assets/images/main.png")}
+            /> */}
+          </span>
         )}
       </div>
       <Menu
-        theme="dark"
+        theme={MENU.THEME ?? "dark"}
         mode="inline"
         defaultSelectedKeys={defaultSelectedKey}
         key={defaultSelectedKey}

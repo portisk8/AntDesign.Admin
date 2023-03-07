@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Layout,
   Menu,
+  Image,
   Button,
   Row,
   Col,
@@ -15,6 +16,9 @@ import Footer from "../../components/Layout/Footer";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/slices/users";
 import CONFIG from "../../common/environment";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { useEffect } from "react";
+import { useWindowSize } from "../../utils/Hooks/useWindowSize";
 
 function onChange(checked) {
   console.log(`switch to ${checked}`);
@@ -28,17 +32,34 @@ function SignIn() {
   // const [username, setUsername] = useState();
   // const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
+  const windowSize = useWindowSize();
 
-  const onFinish = (values) => {
+  useEffect(() => {
+    console.log(CONFIG);
+  }, []);
+
+  const onFinish = async (values) => {
     setLoading(true);
-    dispatch(login(values)).then((data) => {
+    try {
+      const responseData = await dispatch(login(values));
       setLoading(false);
-      if (data && data.access_token) navigate("/");
-    });
+      if (responseData && responseData.access_token) navigate("/");
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.error("Failed:", errorInfo);
+  };
+
+  const handleSuccesGoogleLogin = (response) => {
+    console.log(response);
+    onFinish({ externalToken: response.credential });
+  };
+  const handleErrorGoogleLogin = (error) => {
+    console.log(error);
   };
 
   return (
@@ -51,13 +72,19 @@ function SignIn() {
           className="signin"
           style={{ display: "grid", alignItems: "center" }}
         >
-          <Row justify="center">
+          <Row
+            justify="center"
+            style={{ margin: windowSize.width < 768 ? 20 : 0 }}
+          >
             <Col xs={{ span: 24 }} lg={{ span: 6 }} md={{ span: 12 }}>
               <div style={{ textAlign: "center" }}>
-                <Title className="mb-15">{CONFIG.PROJECT_NAME}</Title>
-                <Text className="font-regular text-muted" level={5}>
-                  Inicio de sesión de usuario
-                </Text>
+                <Title className="mb-15">
+                  <Image
+                    preview={false}
+                    width={300}
+                    src={require("../../assets/images/main.png")}
+                  />
+                </Title>
               </div>
               <Form
                 onFinish={onFinish}
@@ -114,6 +141,22 @@ function SignIn() {
                 >
                   Ingresar
                 </Button>
+                {CONFIG.GOOGLE.isEnable && (
+                  <div
+                    style={{
+                      marginTop: 10,
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <GoogleOAuthProvider clientId={CONFIG.GOOGLE.clientId}>
+                      <GoogleLogin
+                        onSuccess={handleSuccesGoogleLogin}
+                        onError={handleErrorGoogleLogin}
+                      />
+                    </GoogleOAuthProvider>
+                  </div>
+                )}
               </Form>
             </Col>
           </Row>

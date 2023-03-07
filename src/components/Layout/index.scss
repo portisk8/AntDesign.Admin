@@ -41,7 +41,15 @@
     width: 200px;
   }
 }
-
+.trigger {
+  height: 100%;
+}
+.ant-layout-sider:not(.ant-layout-sider-collapsed) {
+  flex: 0 0 265px !important;
+  max-width: 265px !important;
+  min-width: 265px !important;
+  width: 265px !important;
+}
 i.trigger {
   font-size: 20px;
   line-height: 64px;

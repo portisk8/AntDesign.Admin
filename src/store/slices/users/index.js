@@ -40,12 +40,7 @@ export default userSlice.reducer;
 // }
 //Mejor diseñado
 export const login = (user) => async (dispatch) => {
-  let param = {
-    username: user.username,
-    password: user.password,
-  };
-  const response = await loginService(param);
-
+  const response = await loginService(user);
   if (!response.data) return;
   dispatch(setCurrentUser(response.data));
   return response.data;

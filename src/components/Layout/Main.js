@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import "./index.scss";
-import { Layout } from "antd";
+import { Layout, Menu } from "antd";
 import Footer from "./Footer";
 import Header from "./Header";
 import Sidenav from "./Sidenav";
 import Emitter from "../../utils/emitter";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/users";
+import CONFIG from "../../common/environment";
 
-const { Content } = Layout;
+const { MENU } = CONFIG;
+const { Header: AntHeader, Content, Sider } = Layout;
 
 function Main({ children }) {
   const [visible, setVisible] = useState(false);
@@ -32,15 +34,16 @@ function Main({ children }) {
 
   return visible ? (
     <Layout style={{ minHeight: "100%" }}>
-      <Sidenav />
-      <Layout className="site-layout">
+      {MENU.TYPE?.toLocaleLowerCase() == "side" && <Sidenav />}
+      <Layout className="site-layout" style={{ display: "flex" }}>
         <Header />
         <Content
           className="site-layout-background"
           style={{
             marginTop: 5,
             // padding: 24,
-            backgroundColor: "transparent",
+            backgroundColor: "white",
+            // backgroundColor: "transparent",
             // minHeight: 280,
           }}
         >

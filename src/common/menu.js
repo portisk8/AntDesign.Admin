@@ -33,7 +33,7 @@ const menuData = [
   },
   {
     key: "testParent",
-    label: "Test Expansible",
+    label: "Test Expandible",
     icon: <ScheduleOutlined />,
     // children: [],
     // type,
